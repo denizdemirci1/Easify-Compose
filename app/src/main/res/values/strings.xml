@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Easify</string>
+
+    <string name="com_spotify_sdk_redirect_scheme" translatable="false">com.dendem.easify</string>
+    <string name="com_spotify_sdk_redirect_host" translatable="false">easify-login://callback</string>
+
+
+    <string name="refresh_session_description">Your session has expired. Refresh to continue</string>
+    <string name="refresh">Refresh</string>
+</resources>
