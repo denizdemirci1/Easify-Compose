@@ -4,7 +4,6 @@ import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.navigation.NavController
 import androidx.navigation.NavGraph.Companion.findStartDestination
@@ -12,11 +11,9 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
-import com.dendem.easify.R
 import com.dendem.easify.presentation.favorites.FavoritesScreen
 import com.dendem.easify.presentation.history.HistoryScreen
 import com.dendem.easify.presentation.home.HomeScreen
-import com.dendem.easify.presentation.ui.theme.colorPrimary
 
 @Composable
 fun BottomNavigationView(navController: NavController) {
@@ -33,11 +30,13 @@ fun BottomNavigationView(navController: NavController) {
         val currentRoute = navBackStackEntry?.destination?.route
         items.forEach { item ->
             BottomNavigationItem(
-                icon = { Icon(painterResource(id = item.icon), contentDescription = item.title )},
-                label = { Text(
-                    text = item.title,
-                    style = MaterialTheme.typography.body2
-                )},
+                icon = { Icon(painterResource(id = item.icon), contentDescription = item.title) },
+                label = {
+                    Text(
+                        text = item.title,
+                        style = MaterialTheme.typography.body2
+                    )
+                },
                 selectedContentColor = Color.White,
                 unselectedContentColor = Color.Gray,
                 alwaysShowLabel = true,

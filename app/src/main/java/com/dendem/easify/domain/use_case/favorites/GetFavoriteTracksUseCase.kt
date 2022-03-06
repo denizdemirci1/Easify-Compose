@@ -20,14 +20,14 @@ class GetFavoriteTracksUseCase @Inject constructor(
             emit(Result.Loading())
             val topTracks = repository.getTopTracks(timeRange, limit)
             emit(Result.Success(topTracks))
-        } catch(e: HttpException) {
+        } catch (e: HttpException) {
             emit(
                 Result.Error(
                     message = e.localizedMessage ?: "An unexpected error occured",
                     code = e.code()
                 )
             )
-        } catch(e: IOException) {
+        } catch (e: IOException) {
             emit(Result.Error("Couldn't reach server. Check your internet connection."))
         }
     }

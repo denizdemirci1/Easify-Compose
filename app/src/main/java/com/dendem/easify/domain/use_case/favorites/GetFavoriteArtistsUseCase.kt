@@ -20,14 +20,14 @@ class GetFavoriteArtistsUseCase @Inject constructor(
             emit(Result.Loading())
             val topArtists = repository.getTopArtists(timeRange, limit)
             emit(Result.Success(topArtists))
-        } catch(e: HttpException) {
+        } catch (e: HttpException) {
             emit(
                 Result.Error(
                     message = e.localizedMessage ?: "An unexpected error occured",
                     code = e.code()
                 )
             )
-        } catch(e: IOException) {
+        } catch (e: IOException) {
             emit(Result.Error("Couldn't reach server. Check your internet connection."))
         }
     }

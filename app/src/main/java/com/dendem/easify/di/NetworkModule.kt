@@ -28,9 +28,11 @@ object NetworkModule {
             writeTimeout(Constants.WRITE_TIMEOUT, TimeUnit.SECONDS)
             readTimeout(Constants.READ_TIMEOUT, TimeUnit.SECONDS)
             retryOnConnectionFailure(true)
-            addInterceptor(HttpLoggingInterceptor().apply {
-                level = HttpLoggingInterceptor.Level.BODY
-            })
+            addInterceptor(
+                HttpLoggingInterceptor().apply {
+                    level = HttpLoggingInterceptor.Level.BODY
+                }
+            )
             addInterceptor(SpotifyInterceptor(UserManager(storage)))
         }.build()
     }

@@ -17,14 +17,14 @@ class GetHistoryUseCase @Inject constructor(
             emit(Result.Loading())
             val history = repository.getUserHistory()
             emit(Result.Success(history))
-        } catch(e: HttpException) {
+        } catch (e: HttpException) {
             emit(
                 Result.Error(
                     message = e.localizedMessage ?: "An unexpected error occured",
                     code = e.code()
                 )
             )
-        } catch(e: IOException) {
+        } catch (e: IOException) {
             emit(Result.Error("Couldn't reach server. Check your internet connection."))
         }
     }

@@ -33,7 +33,7 @@ class HistoryViewModel @Inject constructor(
                 is Result.Success -> {
                     _state.value = HistoryState(
                         data = result.data?.let { history ->
-                            history.copy(items= history.items.distinctBy { it.track.id })
+                            history.copy(items = history.items.distinctBy { it.track.id })
                         }
                     )
                 }

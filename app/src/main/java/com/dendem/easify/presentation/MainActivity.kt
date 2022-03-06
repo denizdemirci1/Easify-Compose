@@ -21,7 +21,6 @@ import com.dendem.easify.presentation.ui.theme.EasifyTheme
 import com.spotify.sdk.android.auth.*
 import dagger.hilt.android.AndroidEntryPoint
 
-
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
@@ -73,8 +72,7 @@ class MainActivity : ComponentActivity() {
         val response = AuthorizationClient.getResponse(resultCode, data)
         if (response.error != null && response.error.isNotEmpty()) {
             val error = response.error
-        }
-        else if (requestCode == AUTH_TOKEN_REQUEST_CODE) {
+        } else if (requestCode == AUTH_TOKEN_REQUEST_CODE) {
             viewModel.setToken(response.accessToken)
             isTokenValid.value = true
         }
