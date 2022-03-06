@@ -3,7 +3,6 @@ package com.dendem.easify.presentation.history
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
@@ -12,12 +11,9 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.dendem.easify.R
-import com.dendem.easify.data.remote.dto.History
-import com.dendem.easify.domain.model.EasifyItem
-import com.dendem.easify.domain.model.EasifyItemType
 import com.dendem.easify.extensions.toEasifyItem
 import com.dendem.easify.presentation.MainActivity
-import com.dendem.easify.presentation.common.components.EasifyItemView
+import com.dendem.easify.presentation.common.components.EasifyListItemView
 import com.dendem.easify.presentation.common.components.ErrorView
 import com.dendem.easify.presentation.common.components.LoadingView
 import com.dendem.easify.presentation.common.components.RetryView
@@ -51,7 +47,7 @@ fun HistoryScreen(
             state.data != null -> {
                 LazyColumn(modifier = Modifier.fillMaxSize()) {
                     itemsIndexed(state.data.items) { index, item ->
-                        EasifyItemView(
+                        EasifyListItemView(
                             item = item.toEasifyItem(),
                             position = index,
                             onItemClick = {}

@@ -19,7 +19,7 @@ import com.dendem.easify.domain.model.EasifyItem
 import com.dendem.easify.extensions.getContentDescription
 
 @Composable
-fun EasifyItemView(
+fun EasifyListItemView(
     item: EasifyItem,
     position: Int,
     onItemClick: (EasifyItem) -> Unit

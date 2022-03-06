@@ -13,7 +13,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.dendem.easify.R
 import com.dendem.easify.extensions.toEasifyItem
 import com.dendem.easify.presentation.MainActivity
-import com.dendem.easify.presentation.common.components.EasifyWidgetView
+import com.dendem.easify.presentation.common.components.EasifyListWidgetView
 import com.dendem.easify.presentation.common.components.ErrorView
 import com.dendem.easify.presentation.common.components.LoadingView
 import com.dendem.easify.presentation.common.components.RetryView
@@ -50,14 +50,14 @@ fun FavoritesScreen(
             }
         }
         if (state.topArtistsData != null) {
-            EasifyWidgetView(
+            EasifyListWidgetView(
                 title = "Top Artists",
                 items = state.topArtistsData.items.map { it.toEasifyItem() },
                 onItemClick = {}
             )
         }
         if (state.topTracksData != null) {
-            EasifyWidgetView(
+            EasifyListWidgetView(
                 title = "Top Tracks",
                 items = state.topTracksData.items.map { it.toEasifyItem() },
                 onItemClick = {}

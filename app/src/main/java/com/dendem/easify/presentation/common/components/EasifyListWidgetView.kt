@@ -10,7 +10,7 @@ import androidx.compose.ui.unit.dp
 import com.dendem.easify.domain.model.EasifyItem
 
 @Composable
-fun EasifyWidgetView(
+fun EasifyListWidgetView(
     title: String,
     items: List<EasifyItem>,
     onItemClick: (EasifyItem) -> Unit
@@ -27,7 +27,7 @@ fun EasifyWidgetView(
             overflow = TextOverflow.Ellipsis
         )
         items.forEachIndexed { index, item ->
-            EasifyItemView(item = item, position = index, onItemClick = onItemClick)
+            EasifyListItemView(item = item, position = index, onItemClick = onItemClick)
         }
     }
 }
