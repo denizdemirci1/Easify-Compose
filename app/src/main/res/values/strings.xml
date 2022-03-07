@@ -7,4 +7,9 @@
 
     <string name="refresh_session_description">Your session has expired. Refresh to continue</string>
     <string name="refresh">Refresh</string>
+
+    <string name="artists">Artists</string>
+    <string name="tracks">Tracks</string>
+
+
 </resources>
