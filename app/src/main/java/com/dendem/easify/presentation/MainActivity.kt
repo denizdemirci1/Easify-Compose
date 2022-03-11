@@ -33,23 +33,21 @@ class MainActivity : ComponentActivity() {
             EasifyTheme {
                 viewModel = hiltViewModel()
                 isTokenValid = remember { mutableStateOf(viewModel.getToken().isNullOrEmpty().not()) }
-                Surface(modifier = Modifier.fillMaxSize(), color = Color.Black) {
-                    val navController = rememberNavController()
-                    if (isTokenValid.value) {
-                        Scaffold(
-                            bottomBar = {
-                                BottomNavigationView(navController = navController)
-                            }
-                        ) {
-                            NavigationGraph(navController)
+                val navController = rememberNavController()
+                if (isTokenValid.value) {
+                    Scaffold(
+                        bottomBar = {
+                            BottomNavigationView(navController = navController)
                         }
-                    } else {
-                        Surface(
-                            modifier = Modifier.fillMaxSize(),
-                            color = Color.Black
-                        ) {}
-                        requestToken()
+                    ) {
+                        NavigationGraph(navController)
                     }
+                } else {
+                    Surface(
+                        modifier = Modifier.fillMaxSize(),
+                        color = Color.Black
+                    ) {}
+                    requestToken()
                 }
             }
         }
