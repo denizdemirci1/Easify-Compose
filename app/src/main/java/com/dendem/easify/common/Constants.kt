@@ -11,4 +11,6 @@ object Constants {
         "user-top-read",
         "user-read-recently-played"
     )
+
+    const val DEFAULT_LIMIT = 20
 }

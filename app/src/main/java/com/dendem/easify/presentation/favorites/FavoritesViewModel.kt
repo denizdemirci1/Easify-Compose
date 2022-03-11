@@ -4,6 +4,7 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.dendem.easify.common.Constants
 import com.dendem.easify.common.Result
 import com.dendem.easify.domain.use_case.favorites.GetFavoriteArtistsUseCase
 import com.dendem.easify.domain.use_case.favorites.GetFavoriteTracksUseCase
@@ -22,13 +23,13 @@ class FavoritesViewModel @Inject constructor(
     val state: State<FavoritesState> = _state
 
     init {
-        getTopTracks(TimeRange.MEDIUM_TERM, 3)
-        getTopArtists(TimeRange.MEDIUM_TERM, 3)
+        getTopTracks(TimeRange.SIX_MONTHS, Constants.DEFAULT_LIMIT)
+        getTopArtists(TimeRange.SIX_MONTHS, Constants.DEFAULT_LIMIT)
     }
 
     fun retry() {
-        getTopTracks(TimeRange.MEDIUM_TERM, 3)
-        getTopArtists(TimeRange.MEDIUM_TERM, 3)
+        getTopTracks(TimeRange.SIX_MONTHS, Constants.DEFAULT_LIMIT)
+        getTopArtists(TimeRange.SIX_MONTHS, Constants.DEFAULT_LIMIT)
     }
 
     private fun getTopTracks(timeRange: TimeRange, limit: Int) {
@@ -83,7 +84,7 @@ class FavoritesViewModel @Inject constructor(
 }
 
 enum class TimeRange(val value: String) {
-    LONG_TERM("long_term"),
-    MEDIUM_TERM("medium_term"),
-    SHORT_TERM("short_term")
+    LIFETIME("long_term"),
+    SIX_MONTHS("medium_term"),
+    MONTHLY("short_term")
 }

@@ -23,8 +23,7 @@ fun BottomNavigationView(navController: NavController) {
         BottomNavItem.Favorites
     )
     BottomNavigation(
-        backgroundColor = Color.Black.copy(0.9f),
-        contentColor = Color.Black
+        backgroundColor = Color.Black.copy(0.85f),
     ) {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
         val currentRoute = navBackStackEntry?.destination?.route
