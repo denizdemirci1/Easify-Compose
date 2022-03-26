@@ -23,13 +23,13 @@ class FavoritesViewModel @Inject constructor(
     val state: State<FavoritesState> = _state
 
     init {
-        getTopTracks(TimeRange.SIX_MONTHS, Constants.DEFAULT_LIMIT)
-        getTopArtists(TimeRange.SIX_MONTHS, Constants.DEFAULT_LIMIT)
+        getTopTracks(TimeRange.SIX_MONTHS, Constants.FREE_LIMIT)
+        getTopArtists(TimeRange.SIX_MONTHS, Constants.FREE_LIMIT)
     }
 
     fun retry() {
-        getTopTracks(TimeRange.SIX_MONTHS, Constants.DEFAULT_LIMIT)
-        getTopArtists(TimeRange.SIX_MONTHS, Constants.DEFAULT_LIMIT)
+        getTopTracks(TimeRange.SIX_MONTHS, Constants.FREE_LIMIT)
+        getTopArtists(TimeRange.SIX_MONTHS, Constants.FREE_LIMIT)
     }
 
     private fun getTopTracks(timeRange: TimeRange, limit: Int) {

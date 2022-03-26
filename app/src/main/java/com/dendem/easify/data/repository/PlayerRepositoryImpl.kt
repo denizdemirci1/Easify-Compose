@@ -9,7 +9,7 @@ class PlayerRepositoryImpl @Inject constructor(
     private val spotifyApi: SpotifyApi
 ) : PlayerRepository {
 
-    override suspend fun getUserHistory(): HistoryDTO {
-        return spotifyApi.fetchRecentlyPlayed()
+    override suspend fun getUserHistory(limit: Int): HistoryDTO {
+        return spotifyApi.fetchRecentlyPlayed(limit)
     }
 }

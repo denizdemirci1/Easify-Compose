@@ -12,10 +12,10 @@ import javax.inject.Inject
 class GetHistoryUseCase @Inject constructor(
     private val repository: PlayerRepository
 ) {
-    operator fun invoke(): Flow<Result<HistoryDTO>> = flow {
+    operator fun invoke(limit: Int): Flow<Result<HistoryDTO>> = flow {
         try {
             emit(Result.Loading())
-            val history = repository.getUserHistory()
+            val history = repository.getUserHistory(limit)
             emit(Result.Success(history))
         } catch (e: HttpException) {
             emit(

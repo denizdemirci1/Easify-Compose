@@ -4,6 +4,7 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.dendem.easify.common.Constants.FREE_LIMIT
 import com.dendem.easify.common.Result
 import com.dendem.easify.domain.use_case.history.GetHistoryUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -20,15 +21,15 @@ class HistoryViewModel @Inject constructor(
     val state: State<HistoryState> = _state
 
     init {
-        getHistory()
+        getHistory(FREE_LIMIT)
     }
 
     fun retry() {
-        getHistory()
+        getHistory(FREE_LIMIT)
     }
 
-    private fun getHistory() {
-        getHistoryUseCase().onEach { result ->
+    private fun getHistory(limit: Int) {
+        getHistoryUseCase(limit).onEach { result ->
             when (result) {
                 is Result.Success -> {
                     _state.value = HistoryState(

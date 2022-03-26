@@ -4,5 +4,5 @@ import com.dendem.easify.data.remote.dto.HistoryDTO
 
 interface PlayerRepository {
 
-    suspend fun getUserHistory(): HistoryDTO
+    suspend fun getUserHistory(limit: Int = 50): HistoryDTO
 }

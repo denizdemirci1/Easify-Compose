@@ -13,4 +13,7 @@ object Constants {
     )
 
     const val DEFAULT_LIMIT = 20
+    const val FREE_LIMIT = 5
+    const val HOME_PREMIUM_LIMIT = 10
+    const val PREMIUM_LIMIT = 50
 }
