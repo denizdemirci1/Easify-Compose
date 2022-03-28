@@ -22,14 +22,8 @@ class HomeViewModel @Inject constructor(
     private val getFavoriteTracksUseCase: GetFavoriteTracksUseCase
 ) : ViewModel() {
 
-    private val _homeHistoryState = mutableStateOf(HomeHistoryState())
-    val homeHistoryState: State<HomeHistoryState> = _homeHistoryState
-
-    private val _homeFavoriteArtistsState = mutableStateOf(HomeFavoriteArtistsState())
-    val homeFavoriteArtistsState: State<HomeFavoriteArtistsState> = _homeFavoriteArtistsState
-
-    private val _homeFavoriteTracksState = mutableStateOf(HomeFavoriteTracksState())
-    val homeFavoriteTracksState: State<HomeFavoriteTracksState> = _homeFavoriteTracksState
+    private val _homeState = mutableStateOf(HomeState())
+    val homeState: State<HomeState> = _homeState
 
     init {
         getHistory(FREE_LIMIT)
@@ -47,22 +41,25 @@ class HomeViewModel @Inject constructor(
         getHistoryUseCase(limit).onEach { result ->
             when (result) {
                 is Result.Success -> {
-                    _homeHistoryState.value = HomeHistoryState(
-                        data = result.data?.let { history ->
+                    _homeState.value = _homeState.value.copy(
+                        historyData = result.data?.let { history ->
                             history.copy(items = history.items.distinctBy { it.track.id })
-                        }
+                        },
+                        isLoading = false,
+                        error = null
                     )
                 }
                 is Result.Error -> {
-                    _homeHistoryState.value = HomeHistoryState(
+                    _homeState.value = _homeState.value.copy(
                         error = Result.Error(
                             message = result.message.orEmpty(),
                             code = result.code
-                        )
+                        ),
+                        isLoading = false
                     )
                 }
                 is Result.Loading -> {
-                    _homeHistoryState.value = HomeHistoryState(isLoading = true)
+                    _homeState.value = _homeState.value.copy(isLoading = true)
                 }
             }
         }.launchIn(viewModelScope)
@@ -72,22 +69,23 @@ class HomeViewModel @Inject constructor(
         getFavoriteArtistsUseCase(timeRange.value, limit).onEach { result ->
             when (result) {
                 is Result.Success -> {
-                    _homeFavoriteArtistsState.value = _homeFavoriteArtistsState.value.copy(
-                        topArtistsData = result.data,
+                    _homeState.value = _homeState.value.copy(
+                        topArtistData = result.data,
                         isLoading = false,
                         error = null
                     )
                 }
                 is Result.Error -> {
-                    _homeFavoriteArtistsState.value = HomeFavoriteArtistsState(
+                    _homeState.value = _homeState.value.copy(
                         error = Result.Error(
                             message = result.message.orEmpty(),
                             code = result.code
-                        )
+                        ),
+                        isLoading = false
                     )
                 }
                 is Result.Loading -> {
-                    _homeFavoriteArtistsState.value = HomeFavoriteArtistsState(isLoading = true)
+                    _homeState.value = _homeState.value.copy(isLoading = true)
                 }
             }
         }.launchIn(viewModelScope)
@@ -97,22 +95,23 @@ class HomeViewModel @Inject constructor(
         getFavoriteTracksUseCase(timeRange.value, limit).onEach { result ->
             when (result) {
                 is Result.Success -> {
-                    _homeFavoriteTracksState.value = _homeFavoriteTracksState.value.copy(
+                    _homeState.value = _homeState.value.copy(
                         topTracksData = result.data,
                         isLoading = false,
                         error = null
                     )
                 }
                 is Result.Error -> {
-                    _homeFavoriteTracksState.value = HomeFavoriteTracksState(
+                    _homeState.value = _homeState.value.copy(
                         error = Result.Error(
                             message = result.message.orEmpty(),
                             code = result.code
-                        )
+                        ),
+                        isLoading = false
                     )
                 }
                 is Result.Loading -> {
-                    _homeFavoriteTracksState.value = HomeFavoriteTracksState(isLoading = true)
+                    _homeState.value = _homeState.value.copy(isLoading = true)
                 }
             }
         }.launchIn(viewModelScope)

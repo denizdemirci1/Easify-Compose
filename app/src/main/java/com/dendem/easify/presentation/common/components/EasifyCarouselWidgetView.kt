@@ -10,7 +10,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.dendem.easify.domain.model.EasifyItem
-import com.dendem.easify.extensions.toEasifyItem
 
 @Composable
 fun EasifyCarouselWidgetView(
@@ -19,19 +18,17 @@ fun EasifyCarouselWidgetView(
     onItemClick: (EasifyItem) -> Unit
 ) {
     Column(
-        modifier = Modifier
-            .fillMaxWidth(),
-        verticalArrangement = Arrangement.SpaceBetween
+        modifier = Modifier.fillMaxWidth()
+            .padding(top = 16.dp)
     ) {
         Text(
             text = title,
-            style = MaterialTheme.typography.body1,
-            overflow = TextOverflow.Ellipsis
+            style = MaterialTheme.typography.h2,
+            overflow = TextOverflow.Ellipsis,
+            modifier = Modifier.padding(start = 16.dp)
         )
-        Spacer(modifier = Modifier.height(8.dp))
-        LazyRow(
-            modifier = Modifier.fillMaxSize()
-        ) {
+        Spacer(modifier = Modifier.height(16.dp))
+        LazyRow() {
             itemsIndexed(items) { index, item ->
                 EasifyCarouselItemView(
                     item = item,

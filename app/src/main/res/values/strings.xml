@@ -11,5 +11,9 @@
     <string name="artists">Artists</string>
     <string name="tracks">Tracks</string>
 
+    <string name="top_artists">Top Artists</string>
+    <string name="top_tracks">Top Tracks</string>
+    <string name="recently_listened">Recently Listened</string>
+
 
 </resources>

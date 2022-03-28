@@ -22,6 +22,7 @@ import com.dendem.easify.extensions.getContentDescription
 fun EasifyListItemView(
     item: EasifyItem,
     position: Int,
+    indicatorText: String? = null,
     onItemClick: (EasifyItem) -> Unit
 ) {
     Card(
@@ -38,14 +39,16 @@ fun EasifyListItemView(
                 .fillMaxWidth()
                 .padding(16.dp)
         ) {
-            Text(
-                text = "#${position + 1}",
-                color = MaterialTheme.colors.surface,
-                fontWeight = FontWeight.Bold,
-                style = MaterialTheme.typography.h6,
-                modifier = Modifier.padding(0.dp, 0.dp, 16.dp, 0.dp)
-                    .align(Alignment.CenterVertically)
-            )
+            indicatorText?.let {
+                Text(
+                    text = indicatorText,
+                    color = MaterialTheme.colors.surface,
+                    fontWeight = FontWeight.Bold,
+                    style = MaterialTheme.typography.h6,
+                    modifier = Modifier.padding(0.dp, 0.dp, 16.dp, 0.dp)
+                        .align(Alignment.CenterVertically)
+                )
+            }
 
             AsyncImage(
                 model = item.images?.first()?.url.orEmpty(),

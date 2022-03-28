@@ -11,6 +11,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.dendem.easify.R
+import com.dendem.easify.common.Result
 import com.dendem.easify.extensions.toEasifyItem
 import com.dendem.easify.presentation.MainActivity
 import com.dendem.easify.presentation.common.components.EasifyListItemView
@@ -28,21 +29,7 @@ fun FavoriteArtistsScreen(
         LoadingView()
     }
     if (state.error != null) {
-        if (state.error.code == 401) {
-            val context = LocalContext.current
-            val coroutineScope = rememberCoroutineScope()
-            RetryView(
-                description = stringResource(id = R.string.refresh_session_description),
-                buttonText = stringResource(id = R.string.refresh)
-            ) {
-                coroutineScope.launch {
-                    (context as? MainActivity)?.requestToken()
-                    viewModel.retry()
-                }
-            }
-        } else {
-            ErrorView(state.error.message.orEmpty())
-        }
+        HandleError(state.error, viewModel)
     }
     if (state.topArtistsData != null) {
         val items = state.topArtistsData.items.map { it.toEasifyItem() }
@@ -51,8 +38,35 @@ fun FavoriteArtistsScreen(
             verticalArrangement = Arrangement.spacedBy((-8).dp)
         ) {
             itemsIndexed(items) { index, item ->
-                EasifyListItemView(item = item, position = index, onItemClick = { })
+                EasifyListItemView(
+                    item = item,
+                    position = index,
+                    indicatorText = "#${index + 1}",
+                    onItemClick = { }
+                )
             }
         }
+    }
+}
+
+@Composable
+fun HandleError(
+    error: Result.Error<Exception>,
+    viewModel: FavoritesViewModel
+) {
+    if (error.code == 401) {
+        val context = LocalContext.current
+        val coroutineScope = rememberCoroutineScope()
+        RetryView(
+            description = stringResource(id = R.string.refresh_session_description),
+            buttonText = stringResource(id = R.string.refresh)
+        ) {
+            coroutineScope.launch {
+                (context as? MainActivity)?.requestToken()
+                viewModel.retry()
+            }
+        }
+    } else {
+        ErrorView(error.message.orEmpty())
     }
 }

@@ -1,6 +1,8 @@
 package com.dendem.easify.presentation.common.components
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -16,18 +18,21 @@ fun EasifyListWidgetView(
     onItemClick: (EasifyItem) -> Unit
 ) {
     Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(20.dp),
-        verticalArrangement = Arrangement.SpaceBetween
+        modifier = Modifier.fillMaxWidth()
+            .padding(top = 16.dp)
     ) {
         Text(
             text = title,
-            style = MaterialTheme.typography.body1,
-            overflow = TextOverflow.Ellipsis
+            style = MaterialTheme.typography.h2,
+            overflow = TextOverflow.Ellipsis,
+            modifier = Modifier.padding(start = 16.dp)
         )
         items.forEachIndexed { index, item ->
-            EasifyListItemView(item = item, position = index, onItemClick = onItemClick)
+            EasifyListItemView(
+                item = item,
+                position = index,
+                onItemClick = onItemClick
+            )
         }
     }
 }
