@@ -4,6 +4,7 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.dendem.easify.common.Constants.FREE_HISTORY_LIMIT
 import com.dendem.easify.common.Constants.FREE_LIMIT
 import com.dendem.easify.common.Result
 import com.dendem.easify.domain.use_case.favorites.GetFavoriteArtistsUseCase
@@ -26,13 +27,13 @@ class HomeViewModel @Inject constructor(
     val state: State<HomeState> = _state
 
     init {
-        getHistory(FREE_LIMIT)
+        getHistory(FREE_HISTORY_LIMIT)
         getTopArtists(TimeRange.SIX_MONTHS, FREE_LIMIT)
         getTopTracks(TimeRange.SIX_MONTHS, FREE_LIMIT)
     }
 
     fun retry() {
-        getHistory(FREE_LIMIT)
+        getHistory(FREE_HISTORY_LIMIT)
         getTopArtists(TimeRange.SIX_MONTHS, FREE_LIMIT)
         getTopTracks(TimeRange.SIX_MONTHS, FREE_LIMIT)
     }
