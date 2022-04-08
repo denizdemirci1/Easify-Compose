@@ -56,8 +56,11 @@ private fun HandleError(
             buttonText = stringResource(id = R.string.refresh)
         ) {
             coroutineScope.launch {
-                (context as? MainActivity)?.requestToken()
-                viewModel.retry()
+                (context as? MainActivity)?.apply {
+                    setToken(null) {
+                        viewModel.retry()
+                    }
+                }
             }
         }
     } else {

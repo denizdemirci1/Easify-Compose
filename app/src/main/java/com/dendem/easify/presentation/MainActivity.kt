@@ -7,12 +7,13 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.*
+import androidx.compose.material.Scaffold
+import androidx.compose.material.Surface
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.rememberNavController
@@ -20,44 +21,57 @@ import com.dendem.easify.BuildConfig
 import com.dendem.easify.R
 import com.dendem.easify.common.Constants
 import com.dendem.easify.presentation.ui.theme.EasifyTheme
-import com.spotify.sdk.android.auth.*
+import com.spotify.sdk.android.auth.AuthorizationClient
+import com.spotify.sdk.android.auth.AuthorizationRequest
+import com.spotify.sdk.android.auth.AuthorizationResponse
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
     lateinit var viewModel: MainViewModel
-    private var isTokenValid = mutableStateOf(false)
+
+    private var tokenRefreshedListener: (() -> Unit)? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             EasifyTheme {
                 viewModel = hiltViewModel()
-                isTokenValid = remember { mutableStateOf(viewModel.getToken().isNullOrEmpty().not()) }
+                val state = viewModel.state.value
                 val navController = rememberNavController()
-                if (isTokenValid.value) {
-                    Scaffold(
-                        bottomBar = {
-                            BottomNavigationView(navController = navController)
-                        }
-                    ) { innerPadding ->
-                        Box(modifier = Modifier.padding(innerPadding)) {
-                            NavigationGraph(navController)
+                when {
+                    state.error.isNullOrEmpty().not() -> {
+                        Surface(
+                            modifier = Modifier.fillMaxSize(),
+                            color = colorResource(id = R.color.spotifyBlack)
+                        ) {
+                            Text(
+                                text = state.error.toString(),
+                                color = Color.White
+                            )
                         }
                     }
-                } else {
-                    Surface(
-                        modifier = Modifier.fillMaxSize(),
-                        color = Color.Black
-                    ) {}
-                    requestToken()
+                    state.token.isNullOrEmpty() -> {
+                        requestToken()
+                    }
+                    else -> {
+                        Scaffold(
+                            bottomBar = {
+                                BottomNavigationView(navController = navController)
+                            }
+                        ) { innerPadding ->
+                            Box(modifier = Modifier.padding(innerPadding)) {
+                                NavigationGraph(navController)
+                            }
+                        }
+                    }
                 }
             }
         }
     }
 
-    fun requestToken() {
+    private fun requestToken() {
         val tokenRequest = AuthorizationRequest.Builder(
             BuildConfig.SPOTIFY_CLIENT_ID,
             AuthorizationResponse.Type.TOKEN,
@@ -69,14 +83,22 @@ class MainActivity : ComponentActivity() {
         AuthorizationClient.openLoginActivity(this, AUTH_TOKEN_REQUEST_CODE, tokenRequest)
     }
 
+    fun setToken(
+        token: String?,
+        listener: () -> Unit
+    ) {
+        viewModel.setToken(token)
+        tokenRefreshedListener = listener
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         val response = AuthorizationClient.getResponse(resultCode, data)
         if (response.error != null && response.error.isNotEmpty()) {
-            val error = response.error
+            viewModel.setError(response.error)
         } else if (requestCode == AUTH_TOKEN_REQUEST_CODE) {
             viewModel.setToken(response.accessToken)
-            isTokenValid.value = true
+            tokenRefreshedListener?.invoke()
         }
     }
 

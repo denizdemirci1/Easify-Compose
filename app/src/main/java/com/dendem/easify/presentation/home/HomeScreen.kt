@@ -1,11 +1,16 @@
 package com.dendem.easify.presentation.home
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.dendem.easify.R
 import com.dendem.easify.common.Result
@@ -21,7 +26,7 @@ import kotlinx.coroutines.launch
 fun HomeScreen(
     viewModel: HomeViewModel = hiltViewModel()
 ) {
-    val state = viewModel.homeState.value
+    val state = viewModel.state.value
     LazyColumn() {
         item {
             Column {
@@ -52,6 +57,7 @@ fun HomeScreen(
                         onItemClick = {}
                     )
                 }
+                Spacer(modifier = Modifier.height(16.dp))
             }
         }
     }
@@ -70,8 +76,11 @@ private fun HandleError(
             buttonText = stringResource(id = R.string.refresh)
         ) {
             coroutineScope.launch {
-                (context as? MainActivity)?.requestToken()
-                viewModel.retry()
+                (context as? MainActivity)?.apply {
+                    setToken(null) {
+                        viewModel.retry()
+                    }
+                }
             }
         }
     } else {
