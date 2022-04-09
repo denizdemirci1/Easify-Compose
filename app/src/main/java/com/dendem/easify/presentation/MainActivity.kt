@@ -19,12 +19,14 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.rememberNavController
 import com.dendem.easify.BuildConfig
 import com.dendem.easify.R
+import com.dendem.easify.billing.BillingHelper
 import com.dendem.easify.common.Constants
 import com.dendem.easify.presentation.ui.theme.EasifyTheme
 import com.spotify.sdk.android.auth.AuthorizationClient
 import com.spotify.sdk.android.auth.AuthorizationRequest
 import com.spotify.sdk.android.auth.AuthorizationResponse
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -32,6 +34,8 @@ class MainActivity : ComponentActivity() {
     lateinit var viewModel: MainViewModel
 
     private var tokenRefreshedListener: (() -> Unit)? = null
+
+    @Inject lateinit var billingHelper: BillingHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,7 +66,7 @@ class MainActivity : ComponentActivity() {
                             }
                         ) { innerPadding ->
                             Box(modifier = Modifier.padding(innerPadding)) {
-                                NavigationGraph(navController)
+                                NavigationGraph(navController, billingHelper)
                             }
                         }
                     }

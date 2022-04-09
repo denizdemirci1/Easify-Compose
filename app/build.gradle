@@ -12,8 +12,8 @@ android {
         applicationId "com.dendem.easify"
         minSdk 26
         targetSdk 32
-        versionCode 1
-        versionName "1.0"
+        versionCode 3
+        versionName "1.0.0-alpha01"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -26,12 +26,14 @@ android {
         properties.load(project.rootProject.file('local.properties').newDataInputStream())
         def spotify_client_id = properties.getProperty('spotify_client_id')
         def spotify_client_secret = properties.getProperty('spotify_client_secret')
+        def play_public_key = properties.getProperty('play_public_key')
 
         debug {
             debuggable true
             minifyEnabled false
             buildConfigField "String", "SPOTIFY_CLIENT_ID", spotify_client_id
             buildConfigField "String", "SPOTIFY_CLIENT_SECRET", spotify_client_secret
+            buildConfigField "String", "PLAY_PUBLIC_KEY", play_public_key
         }
 
         release {
@@ -39,6 +41,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             buildConfigField "String", "SPOTIFY_CLIENT_ID", spotify_client_id
             buildConfigField "String", "SPOTIFY_CLIENT_SECRET", spotify_client_secret
+            buildConfigField "String", "PLAY_PUBLIC_KEY", play_public_key
         }
     }
     compileOptions {
@@ -79,6 +82,9 @@ dependencies {
     implementation "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03"
     kapt "androidx.hilt:hilt-compiler:1.0.0"
     implementation 'androidx.hilt:hilt-navigation-compose:1.0.0'
+
+    // Google
+    implementation "com.android.billingclient:billing-ktx:4.1.0"
 
     // Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
