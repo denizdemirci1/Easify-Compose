@@ -144,7 +144,7 @@ class HomeViewModel @Inject constructor(
         description: String
     ): List<EasifyItem> {
         var newList = items
-        if (isPremiumUser) {
+        if (!isPremiumUser) {
             newList = items.withPromo(title, description)
         }
         return newList
