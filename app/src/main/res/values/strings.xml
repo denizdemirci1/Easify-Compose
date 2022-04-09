@@ -4,6 +4,8 @@
     <string name="com_spotify_sdk_redirect_scheme" translatable="false">com.dendem.easify</string>
     <string name="com_spotify_sdk_redirect_host" translatable="false">easify-login://callback</string>
 
+    <string name="upgrade_premium_title">Upgrade to Premium</string>
+    <string name="upgrade_premium_desc">to see 50 items</string>
 
     <string name="refresh_session_description">Your session has expired. Refresh to continue</string>
     <string name="refresh">Refresh</string>

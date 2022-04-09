@@ -15,7 +15,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+import com.dendem.easify.R
 import com.dendem.easify.domain.model.EasifyItem
+import com.dendem.easify.domain.model.EasifyItemType
 import com.dendem.easify.extensions.getContentDescription
 
 @Composable
@@ -39,7 +41,7 @@ fun EasifyListItemView(
                 .fillMaxWidth()
                 .padding(16.dp)
         ) {
-            indicatorText?.let {
+            if (indicatorText != null && item.itemType != EasifyItemType.PROMO) {
                 Text(
                     text = indicatorText,
                     color = MaterialTheme.colors.surface,
@@ -50,40 +52,61 @@ fun EasifyListItemView(
                 )
             }
 
-            AsyncImage(
-                model = item.images?.first()?.url.orEmpty(),
-                contentDescription = item.getContentDescription(),
-                modifier = Modifier
-                    .size(60.dp, 60.dp)
-                    .clip(RoundedCornerShape(8.dp)),
-                contentScale = ContentScale.Crop
-            )
-
-            Spacer(modifier = Modifier.width(16.dp))
-
-            Column(modifier = Modifier.align(Alignment.CenterVertically)) {
-                item.trackName?.let { trackName ->
-                    Text(
-                        text = trackName,
-                        modifier = Modifier.padding(0.dp, 0.dp, 12.dp, 0.dp),
-                        color = MaterialTheme.colors.surface,
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis,
-                        fontWeight = FontWeight.Bold,
-                        style = MaterialTheme.typography.subtitle1
+            when (item.itemType) {
+                EasifyItemType.PROMO -> {
+                    PromoView(
+                        promoViewType = PromoViewType.FOR_LIST,
+                        title = item.trackName!!,
+                        description = item.artistName!!
                     )
-
-                    Spacer(modifier = Modifier.height(8.dp))
                 }
+                else -> {
+                    if (item.images.isNullOrEmpty()) {
+                        PlaceHolderView(
+                            60.dp,
+                            60.dp,
+                            item.getContentDescription(),
+                            R.drawable.ic_favorites,
+                            R.color.spotifyBlack
+                        )
+                    } else {
+                        AsyncImage(
+                            model = item.images.first().url,
+                            contentDescription = item.getContentDescription(),
+                            modifier = Modifier
+                                .size(60.dp, 60.dp)
+                                .clip(RoundedCornerShape(8.dp)),
+                            contentScale = ContentScale.Crop
+                        )
+                    }
 
-                item.artistName?.let { artistName ->
-                    Text(
-                        text = artistName,
-                        modifier = Modifier.padding(0.dp, 0.dp, 12.dp, 0.dp),
-                        color = MaterialTheme.colors.surface,
-                        fontWeight = FontWeight.Normal,
-                        style = MaterialTheme.typography.subtitle2
-                    )
+                    Spacer(modifier = Modifier.width(16.dp))
+
+                    Column(modifier = Modifier.align(Alignment.CenterVertically)) {
+                        item.trackName?.let { trackName ->
+                            Text(
+                                text = trackName,
+                                modifier = Modifier.padding(0.dp, 0.dp, 12.dp, 0.dp),
+                                color = MaterialTheme.colors.surface,
+                                maxLines = 1,
+                                overflow = TextOverflow.Ellipsis,
+                                fontWeight = FontWeight.Bold,
+                                style = MaterialTheme.typography.subtitle1
+                            )
+
+                            Spacer(modifier = Modifier.height(8.dp))
+                        }
+
+                        item.artistName?.let { artistName ->
+                            Text(
+                                text = artistName,
+                                modifier = Modifier.padding(0.dp, 0.dp, 12.dp, 0.dp),
+                                color = MaterialTheme.colors.surface,
+                                fontWeight = FontWeight.Normal,
+                                style = MaterialTheme.typography.subtitle2
+                            )
+                        }
+                    }
                 }
             }
         }

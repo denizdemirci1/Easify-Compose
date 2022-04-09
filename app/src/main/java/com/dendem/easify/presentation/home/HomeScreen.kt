@@ -1,11 +1,12 @@
 package com.dendem.easify.presentation.home
 
+import android.content.Context
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -13,7 +14,11 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.dendem.easify.R
+import com.dendem.easify.billing.BillingHelper
+import com.dendem.easify.common.Constants
 import com.dendem.easify.common.Result
+import com.dendem.easify.domain.model.EasifyItem
+import com.dendem.easify.domain.model.EasifyItemType
 import com.dendem.easify.extensions.toEasifyItem
 import com.dendem.easify.presentation.MainActivity
 import com.dendem.easify.presentation.common.components.EasifyCarouselWidgetView
@@ -24,10 +29,12 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun HomeScreen(
+    billingHelper: BillingHelper,
     viewModel: HomeViewModel = hiltViewModel()
 ) {
-    val state = viewModel.state.value
-    LazyColumn() {
+    val state = viewModel.state.collectAsState().value
+    val context = LocalContext.current
+    LazyColumn {
         item {
             Column {
                 if (state.isLoading) {
@@ -36,25 +43,52 @@ fun HomeScreen(
                 if (state.error != null) {
                     HandleError(state.error, viewModel)
                 }
-                if (state.topArtistData != null) {
+                if (state.topArtistsData != null) {
                     EasifyCarouselWidgetView(
                         title = stringResource(id = R.string.top_artists),
-                        items = state.topArtistData.items.map { it.toEasifyItem() },
-                        onItemClick = {}
+                        items = viewModel.prepareItemsForView(
+                            items = state.topArtistsData.items.map { it.toEasifyItem() },
+                            title = stringResource(id = R.string.upgrade_premium_title),
+                            description = stringResource(id = R.string.upgrade_premium_desc)
+                        ),
+                        onItemClick = { item ->
+                            when (item.itemType) {
+                                EasifyItemType.PROMO -> handlePromoClick(context, billingHelper)
+                                else -> handleItemClick(item)
+                            }
+                        }
                     )
                 }
                 if (state.topTracksData != null) {
                     EasifyCarouselWidgetView(
                         title = stringResource(id = R.string.top_tracks),
-                        items = state.topTracksData.items.map { it.toEasifyItem() },
-                        onItemClick = {}
+                        items = viewModel.prepareItemsForView(
+                            items = state.topTracksData.items.map { it.toEasifyItem() },
+                            title = stringResource(id = R.string.upgrade_premium_title),
+                            description = stringResource(id = R.string.upgrade_premium_desc)
+                        ),
+                        onItemClick = { item ->
+                            when (item.itemType) {
+                                EasifyItemType.PROMO -> handlePromoClick(context, billingHelper)
+                                else -> handleItemClick(item)
+                            }
+                        }
                     )
                 }
                 if (state.historyData != null) {
                     EasifyCarouselWidgetView(
                         title = stringResource(id = R.string.recently_listened),
-                        items = state.historyData.items.map { it.toEasifyItem() },
-                        onItemClick = {}
+                        items = viewModel.prepareItemsForView(
+                            items = state.historyData.items.map { it.toEasifyItem() },
+                            title = stringResource(id = R.string.upgrade_premium_title),
+                            description = stringResource(id = R.string.upgrade_premium_desc)
+                        ),
+                        onItemClick = { item ->
+                            when (item.itemType) {
+                                EasifyItemType.PROMO -> handlePromoClick(context, billingHelper)
+                                else -> handleItemClick(item)
+                            }
+                        }
                     )
                 }
                 Spacer(modifier = Modifier.height(16.dp))
@@ -86,4 +120,13 @@ private fun HandleError(
     } else {
         ErrorView(error.message.orEmpty())
     }
+}
+
+private fun handleItemClick(item: EasifyItem) { }
+
+private fun handlePromoClick(
+    context: Context,
+    billingHelper: BillingHelper
+) {
+    billingHelper.launchBillingFlow(context as MainActivity, Constants.PREMIUM_ACCOUNT)
 }

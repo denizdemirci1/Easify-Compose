@@ -11,5 +11,5 @@ data class EasifyItem(
 )
 
 enum class EasifyItemType {
-    TRACK, ARTIST, ALBUM
+    TRACK, ARTIST, ALBUM, PROMO
 }

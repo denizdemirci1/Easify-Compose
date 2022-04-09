@@ -11,6 +11,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
+import com.dendem.easify.billing.BillingHelper
 import com.dendem.easify.presentation.favorites.FavoritesScreen
 import com.dendem.easify.presentation.history.HistoryScreen
 import com.dendem.easify.presentation.home.HomeScreen
@@ -57,7 +58,10 @@ fun BottomNavigationView(navController: NavController) {
 }
 
 @Composable
-fun NavigationGraph(navHostController: NavHostController) {
+fun NavigationGraph(
+    navHostController: NavHostController,
+    billingHelper: BillingHelper
+) {
     NavHost(
         navController = navHostController,
         startDestination = BottomNavItem.Home.route
@@ -65,17 +69,17 @@ fun NavigationGraph(navHostController: NavHostController) {
         composable(
             route = BottomNavItem.Home.route
         ) {
-            HomeScreen()
+            HomeScreen(billingHelper)
         }
         composable(
             route = BottomNavItem.History.route
         ) {
-            HistoryScreen()
+            HistoryScreen(billingHelper)
         }
         composable(
             route = BottomNavItem.Favorites.route
         ) {
-            FavoritesScreen()
+            FavoritesScreen(billingHelper)
         }
     }
 }

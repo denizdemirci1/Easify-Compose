@@ -12,6 +12,9 @@ object Constants {
         "user-read-recently-played"
     )
 
+    // SKU
+    const val PREMIUM_ACCOUNT = "premium_account"
+
     const val DEFAULT_LIMIT = 20
     const val FREE_LIMIT = 5
     const val FREE_HISTORY_LIMIT = 10

@@ -6,11 +6,14 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import com.dendem.easify.R
+import com.dendem.easify.billing.BillingHelper
 import com.dendem.easify.presentation.favorites.components.FavoritesScreenType
 import com.dendem.easify.presentation.favorites.components.FavoritesTabBar
 
 @Composable
-fun FavoritesScreen() {
+fun FavoritesScreen(
+    billingHelper: BillingHelper
+) {
     var selectedTab by remember { mutableStateOf(FavoritesScreenType.ARTISTS) }
     val titles = listOf(
         stringResource(id = R.string.artists),
@@ -27,9 +30,9 @@ fun FavoritesScreen() {
         }
     ) {
         if (selectedTab == FavoritesScreenType.ARTISTS) {
-            FavoriteArtistsScreen()
+            FavoriteArtistsScreen(billingHelper)
         } else if (selectedTab == FavoritesScreenType.TRACKS) {
-            FavoriteTracksScreen()
+            FavoriteTracksScreen(billingHelper)
         }
     }
 }

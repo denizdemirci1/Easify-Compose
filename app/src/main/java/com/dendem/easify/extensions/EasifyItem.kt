@@ -7,4 +7,20 @@ fun EasifyItem.getContentDescription() = when (this.itemType) {
     EasifyItemType.TRACK -> this.trackName
     EasifyItemType.ARTIST -> this.artistName
     EasifyItemType.ALBUM -> this.albumName
+    else -> ""
+}
+
+fun List<EasifyItem>.withPromo(
+    title: String,
+    description: String
+): List<EasifyItem> {
+    val newList = this.toMutableList()
+    newList.add(
+        EasifyItem(
+            itemType = EasifyItemType.PROMO,
+            trackName = title,
+            artistName = description
+        )
+    )
+    return newList
 }

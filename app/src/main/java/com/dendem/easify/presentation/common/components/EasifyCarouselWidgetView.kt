@@ -28,12 +28,12 @@ fun EasifyCarouselWidgetView(
             modifier = Modifier.padding(start = 16.dp)
         )
         Spacer(modifier = Modifier.height(16.dp))
-        LazyRow() {
+        LazyRow {
             itemsIndexed(items) { index, item ->
                 EasifyCarouselItemView(
                     item = item,
                     position = index,
-                    onItemClick = {}
+                    onItemClick = onItemClick
                 )
             }
         }
