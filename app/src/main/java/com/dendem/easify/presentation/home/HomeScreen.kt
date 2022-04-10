@@ -51,12 +51,7 @@ fun HomeScreen(
                             title = stringResource(id = R.string.upgrade_premium_title),
                             description = stringResource(id = R.string.upgrade_premium_desc)
                         ),
-                        onItemClick = { item ->
-                            when (item.itemType) {
-                                EasifyItemType.PROMO -> handlePromoClick(context, billingHelper)
-                                else -> handleItemClick(item)
-                            }
-                        }
+                        onItemClick = { handleItemClick(context, billingHelper, it) }
                     )
                 }
                 if (state.topTracksData != null) {
@@ -67,12 +62,7 @@ fun HomeScreen(
                             title = stringResource(id = R.string.upgrade_premium_title),
                             description = stringResource(id = R.string.upgrade_premium_desc)
                         ),
-                        onItemClick = { item ->
-                            when (item.itemType) {
-                                EasifyItemType.PROMO -> handlePromoClick(context, billingHelper)
-                                else -> handleItemClick(item)
-                            }
-                        }
+                        onItemClick = { handleItemClick(context, billingHelper, it) }
                     )
                 }
                 if (state.historyData != null) {
@@ -83,12 +73,7 @@ fun HomeScreen(
                             title = stringResource(id = R.string.upgrade_premium_title),
                             description = stringResource(id = R.string.upgrade_premium_desc)
                         ),
-                        onItemClick = { item ->
-                            when (item.itemType) {
-                                EasifyItemType.PROMO -> handlePromoClick(context, billingHelper)
-                                else -> handleItemClick(item)
-                            }
-                        }
+                        onItemClick = { handleItemClick(context, billingHelper, it) }
                     )
                 }
                 Spacer(modifier = Modifier.height(16.dp))
@@ -122,7 +107,16 @@ private fun HandleError(
     }
 }
 
-private fun handleItemClick(item: EasifyItem) { }
+private fun handleItemClick(
+    context: Context,
+    billingHelper: BillingHelper,
+    item: EasifyItem
+) {
+    when (item.itemType) {
+        EasifyItemType.PROMO -> handlePromoClick(context, billingHelper)
+        else -> {}
+    }
+}
 
 private fun handlePromoClick(
     context: Context,

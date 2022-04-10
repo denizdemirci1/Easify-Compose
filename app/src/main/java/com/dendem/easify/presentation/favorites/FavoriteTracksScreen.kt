@@ -2,7 +2,6 @@ package com.dendem.easify.presentation.favorites
 
 import android.content.Context
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.runtime.Composable
@@ -48,22 +47,23 @@ fun FavoriteTracksScreen(
                     item = item,
                     position = index,
                     indicatorText = "#${index + 1}",
-                    onItemClick = { clickedItem ->
-                        when (clickedItem.itemType) {
-                            EasifyItemType.PROMO -> handlePromoClick(
-                                context,
-                                billingHelper
-                            )
-                            else -> handleItemClick(item)
-                        }
-                    }
+                    onItemClick = { handleItemClick(context, billingHelper, it) }
                 )
             }
         }
     }
 }
 
-private fun handleItemClick(item: EasifyItem) { }
+private fun handleItemClick(
+    context: Context,
+    billingHelper: BillingHelper,
+    item: EasifyItem
+) {
+    when (item.itemType) {
+        EasifyItemType.PROMO -> handlePromoClick(context, billingHelper)
+        else -> {}
+    }
+}
 
 private fun handlePromoClick(
     context: Context,
