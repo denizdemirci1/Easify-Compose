@@ -3,6 +3,8 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
+    id 'com.google.gms.google-services'
+    id 'com.google.firebase.crashlytics'
 }
 
 android {
@@ -85,6 +87,9 @@ dependencies {
 
     // Google
     implementation "com.android.billingclient:billing-ktx:4.1.0"
+    implementation platform('com.google.firebase:firebase-bom:29.3.0')
+    implementation 'com.google.firebase:firebase-crashlytics'
+    implementation 'com.google.firebase:firebase-analytics-ktx'
 
     // Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'

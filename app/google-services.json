@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "178094438564",
+    "project_id": "easify-af4cd",
+    "storage_bucket": "easify-af4cd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:178094438564:android:2070a747b6a077712e0e31",
+        "android_client_info": {
+          "package_name": "com.dendem.easify"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "178094438564-u6n2nl3br7udapcci2slfcr9spm85cfd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dendem.easify",
+            "certificate_hash": "1e3358a2b661db79d41732f0d83aecfd33c4d4ce"
+          }
+        },
+        {
+          "client_id": "178094438564-s7hqdsa501m21i6rreb6ts6kcm57u1nk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDcHsNIkhO4ZyFO5wRc9C3XMbYahMKvCcY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "178094438564-s7hqdsa501m21i6rreb6ts6kcm57u1nk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
