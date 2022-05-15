@@ -30,7 +30,7 @@ fun EasifyListItemView(
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(8.dp)
+            .padding(start = 8.dp, end = 8.dp, top = 8.dp)
             .clip(RoundedCornerShape(16.dp))
             .clickable { onItemClick.invoke(item) },
         elevation = 0.dp,
@@ -47,7 +47,8 @@ fun EasifyListItemView(
                     color = MaterialTheme.colors.surface,
                     fontWeight = FontWeight.Bold,
                     style = MaterialTheme.typography.h6,
-                    modifier = Modifier.padding(0.dp, 0.dp, 16.dp, 0.dp)
+                    modifier = Modifier
+                        .padding(0.dp, 0.dp, 16.dp, 0.dp)
                         .align(Alignment.CenterVertically)
                 )
             }

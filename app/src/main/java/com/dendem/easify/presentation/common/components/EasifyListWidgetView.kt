@@ -17,10 +17,9 @@ fun EasifyListWidgetView(
 ) {
     Column(
         modifier = Modifier
-            .fillMaxWidth()
-            .padding(top = 16.dp),
-        verticalArrangement = Arrangement.spacedBy((-8).dp)
+            .fillMaxWidth(),
     ) {
+        Spacer(modifier = Modifier.height(16.dp))
         Text(
             text = title,
             style = MaterialTheme.typography.h2,

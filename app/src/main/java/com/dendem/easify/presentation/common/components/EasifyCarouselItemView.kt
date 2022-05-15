@@ -26,7 +26,6 @@ fun EasifyCarouselItemView(
 ) {
     Column(
         modifier = Modifier
-            .padding(start = 16.dp)
             .clickable { onItemClick.invoke(item) }
     ) {
         when (item.itemType) {

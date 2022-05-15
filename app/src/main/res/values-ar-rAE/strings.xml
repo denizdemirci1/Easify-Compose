@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Easify</string>
+
+    <string name="com_spotify_sdk_redirect_scheme" translatable="false">com.dendem.easify</string>
+    <string name="com_spotify_sdk_redirect_host" translatable="false">easify-login://callback</string>
+
+    <string name="upgrade_premium_title">الترقية إلى المميزة</string>
+    <string name="upgrade_premium_desc">انظر 50 مادة</string>
+
+    <string name="refresh_session_description">انتهت صلاحية جلسة العمل الخاصة بك. قم بالتحديث للمتابعة</string>
+    <string name="refresh">تحديث</string>
+
+    <string name="artists">الفنانين</string>
+    <string name="tracks">الأغاني</string>
+
+    <string name="top_artists">كبار الفنانين</string>
+    <string name="top_tracks">أفضل الأغاني</string>
+    <string name="recently_listened">استمعت مؤخرا</string>
+</resources>

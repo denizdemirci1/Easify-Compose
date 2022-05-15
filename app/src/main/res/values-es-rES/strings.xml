@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Easify</string>
+
+    <string name="com_spotify_sdk_redirect_scheme" translatable="false">com.dendem.easify</string>
+    <string name="com_spotify_sdk_redirect_host" translatable="false">easify-login://callback</string>
+
+    <string name="upgrade_premium_title">Mejorado a Premium</string>
+    <string name="upgrade_premium_desc">para ver 50 artículos</string>
+
+    <string name="refresh_session_description">Su sesión ha caducado. Actualizar para continuar</string>
+    <string name="refresh">Actualizar</string>
+
+    <string name="artists">Artistas</string>
+    <string name="tracks">Canciones</string>
+
+    <string name="top_artists">Mejores Artistas</string>
+    <string name="top_tracks">Mejores Canciones</string>
+    <string name="recently_listened">Escuchado Recientemente</string>
+</resources>
