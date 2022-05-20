@@ -40,7 +40,7 @@ class HomeViewModel @Inject constructor(
             billingHelper.isPurchased(Constants.PREMIUM_ACCOUNT)
                 .collectLatest { isPremium ->
                     isPremiumUser = isPremium
-                    if (!isPremiumUser) {
+                    if (isPremiumUser) {
                         getHistory(PREMIUM_HOME_HISTORY_LIMIT)
                         getTopArtists(TimeRange.SIX_MONTHS, PREMIUM_HOME_ARTISTS_LIMIT)
                         getTopTracks(TimeRange.SIX_MONTHS, PREMIUM_HOME_TRACKS_LIMIT)
@@ -146,7 +146,7 @@ class HomeViewModel @Inject constructor(
         description: String
     ): List<EasifyItem> {
         var newList = items
-        if (isPremiumUser) {
+        if (!isPremiumUser) {
             newList = items.withPromo(title, description)
         }
         return newList
