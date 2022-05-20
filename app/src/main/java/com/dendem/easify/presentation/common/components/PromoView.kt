@@ -57,7 +57,8 @@ fun PromoView(
                     .height(100.dp)
                     .width(100.dp)
                     .clip(RoundedCornerShape(4.dp))
-                    .border(BorderStroke(2.dp, colorResource(id = R.color.spotifyGreen))),
+                    .border(BorderStroke(2.dp, colorResource(id = R.color.spotifyGreen)))
+                    .padding(horizontal = 8.dp),
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {

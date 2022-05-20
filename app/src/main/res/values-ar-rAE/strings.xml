@@ -2,9 +2,6 @@
 <resources>
     <string name="app_name">Easify</string>
 
-    <string name="com_spotify_sdk_redirect_scheme" translatable="false">com.dendem.easify</string>
-    <string name="com_spotify_sdk_redirect_host" translatable="false">easify-login://callback</string>
-
     <string name="upgrade_premium_title">الترقية إلى المميزة</string>
     <string name="upgrade_premium_desc">انظر 50 مادة</string>
 
