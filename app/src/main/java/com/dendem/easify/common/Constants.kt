@@ -19,6 +19,8 @@ object Constants {
     const val FREE_LIMIT = 5
     const val FREE_HISTORY_LIMIT = 10
     const val PREMIUM_HOME_HISTORY_LIMIT = 20
+    const val PREMIUM_HOME_ARTISTS_LIMIT = 20
+    const val PREMIUM_HOME_TRACKS_LIMIT = 20
     const val HOME_PREMIUM_LIMIT = 10
     const val PREMIUM_LIMIT = 50
 }

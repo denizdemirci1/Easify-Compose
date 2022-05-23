@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Easify</string>
+
+    <string name="upgrade_premium_title">Passer à la version premium</string>
+    <string name="upgrade_premium_desc">voir 50 articles</string>
+
+    <string name="refresh_session_description">Votre session a expiré. Actualiser pour continuer</string>
+    <string name="refresh">Rafraîchir</string>
+
+    <string name="artists">Artistes</string>
+    <string name="tracks">Chansons</string>
+
+    <string name="top_artists">Meilleurs Artistes</string>
+    <string name="top_tracks">Meilleures Chansons</string>
+    <string name="recently_listened">Récemment écouté</string>
+</resources>

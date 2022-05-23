@@ -6,7 +6,9 @@ import com.dendem.easify.billing.BillingHelper
 import com.dendem.easify.common.Constants
 import com.dendem.easify.common.Constants.FREE_HISTORY_LIMIT
 import com.dendem.easify.common.Constants.FREE_LIMIT
+import com.dendem.easify.common.Constants.PREMIUM_HOME_ARTISTS_LIMIT
 import com.dendem.easify.common.Constants.PREMIUM_HOME_HISTORY_LIMIT
+import com.dendem.easify.common.Constants.PREMIUM_HOME_TRACKS_LIMIT
 import com.dendem.easify.common.Constants.PREMIUM_LIMIT
 import com.dendem.easify.common.Result
 import com.dendem.easify.domain.model.EasifyItem
@@ -40,8 +42,8 @@ class HomeViewModel @Inject constructor(
                     isPremiumUser = isPremium
                     if (isPremiumUser) {
                         getHistory(PREMIUM_HOME_HISTORY_LIMIT)
-                        getTopArtists(TimeRange.SIX_MONTHS, PREMIUM_LIMIT)
-                        getTopTracks(TimeRange.SIX_MONTHS, PREMIUM_LIMIT)
+                        getTopArtists(TimeRange.SIX_MONTHS, PREMIUM_HOME_ARTISTS_LIMIT)
+                        getTopTracks(TimeRange.SIX_MONTHS, PREMIUM_HOME_TRACKS_LIMIT)
                     } else {
                         getHistory(FREE_HISTORY_LIMIT)
                         getTopArtists(TimeRange.SIX_MONTHS, FREE_LIMIT)
@@ -54,8 +56,8 @@ class HomeViewModel @Inject constructor(
     fun retry() {
         if (isPremiumUser) {
             getHistory(PREMIUM_HOME_HISTORY_LIMIT)
-            getTopArtists(TimeRange.SIX_MONTHS, PREMIUM_LIMIT)
-            getTopTracks(TimeRange.SIX_MONTHS, PREMIUM_LIMIT)
+            getTopArtists(TimeRange.SIX_MONTHS, PREMIUM_HOME_ARTISTS_LIMIT)
+            getTopTracks(TimeRange.SIX_MONTHS, PREMIUM_HOME_TRACKS_LIMIT)
         } else {
             getHistory(FREE_HISTORY_LIMIT)
             getTopArtists(TimeRange.SIX_MONTHS, FREE_LIMIT)

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Easify</string>
+
+    <string name="upgrade_premium_title">Premium\'a yükselt</string>
+    <string name="upgrade_premium_desc">50 item gör</string>
+
+    <string name="refresh_session_description">Oturumun sona erdi. Devam etmek için yenile</string>
+    <string name="refresh">Yenile</string>
+
+    <string name="artists">Sanatçılar</string>
+    <string name="tracks">Şarkılar</string>
+
+    <string name="top_artists">En Sevdiğin Sanatçılar</string>
+    <string name="top_tracks">En Sevdiğin Şarkılar</string>
+    <string name="recently_listened">Son Dinlenenler</string>
+</resources>

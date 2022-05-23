@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Easify</string>
+
+    <string name="upgrade_premium_title">Válts prémiumra,</string>
+    <string name="upgrade_premium_desc">hogy 50-re bövitsd a listát</string>
+
+    <string name="refresh_session_description">A munkamenet lejárt. A folytatáshoz frissítse</string>
+    <string name="refresh">újratölt</string>
+
+    <string name="artists">Előadó</string>
+    <string name="tracks">Dalok</string>
+
+    <string name="top_artists">Kedvenc előadó</string>
+    <string name="top_tracks">Kedvenc dalok</string>
+    <string name="recently_listened">Nemrég hallgatott</string>
+</resources>

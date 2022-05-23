@@ -65,7 +65,9 @@ class MainActivity : ComponentActivity() {
                                 BottomNavigationView(navController = navController)
                             }
                         ) { innerPadding ->
-                            Box(modifier = Modifier.padding(innerPadding)) {
+                            Box(
+                                modifier = Modifier.padding(innerPadding)
+                            ) {
                                 NavigationGraph(navController, billingHelper)
                             }
                         }

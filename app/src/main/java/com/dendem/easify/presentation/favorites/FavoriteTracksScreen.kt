@@ -39,9 +39,7 @@ fun FavoriteTracksScreen(
             title = stringResource(id = R.string.upgrade_premium_title),
             description = stringResource(id = R.string.upgrade_premium_desc)
         )
-        LazyColumn(
-            verticalArrangement = Arrangement.spacedBy((-8).dp)
-        ) {
+        LazyColumn {
             itemsIndexed(items) { index, item ->
                 EasifyListItemView(
                     item = item,
