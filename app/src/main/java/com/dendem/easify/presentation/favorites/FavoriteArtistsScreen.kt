@@ -1,7 +1,6 @@
 package com.dendem.easify.presentation.favorites
 
 import android.content.Context
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.runtime.Composable
@@ -9,7 +8,6 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.dendem.easify.R
 import com.dendem.easify.billing.BillingHelper
@@ -50,7 +48,7 @@ fun FavoriteArtistsScreen(
                     item = item,
                     position = index,
                     indicatorText = "#${index + 1}",
-                    onItemClick = { handleItemClick(context, billingHelper, it) }
+                    onItemClick = { handleItemClick(context, billingHelper, it, viewModel) }
                 )
             }
         }
@@ -85,11 +83,14 @@ fun HandleError(
 private fun handleItemClick(
     context: Context,
     billingHelper: BillingHelper,
-    item: EasifyItem
+    item: EasifyItem,
+    viewModel: FavoritesViewModel
 ) {
     when (item.itemType) {
         EasifyItemType.PROMO -> handlePromoClick(context, billingHelper)
-        else -> {}
+        EasifyItemType.ARTIST,
+        EasifyItemType.TRACK,
+        EasifyItemType.ALBUM-> viewModel.openOnSpotify(item.uri)
     }
 }
 

@@ -121,24 +121,7 @@ private fun handleItemClick(
         EasifyItemType.PROMO -> handlePromoClick(context, billingHelper)
         EasifyItemType.ARTIST,
         EasifyItemType.TRACK,
-        EasifyItemType.ALBUM-> openOnSpotify(context, item.uri, viewModel.isSpotifyInstalled())
-        else -> {}
-    }
-}
-
-private fun openOnSpotify(
-    context: Context,
-    uri: String?,
-    isSpotifyInstalled: Boolean
-) {
-    if (isSpotifyInstalled) {
-        context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(uri)))
-    } else {
-        Toast.makeText(
-            context,
-            context.getString(R.string.download_spotify),
-            Toast.LENGTH_SHORT
-        ).show()
+        EasifyItemType.ALBUM-> viewModel.openOnSpotify(item.uri)
     }
 }
 

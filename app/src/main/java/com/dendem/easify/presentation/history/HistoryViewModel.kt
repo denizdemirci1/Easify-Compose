@@ -10,6 +10,7 @@ import com.dendem.easify.common.Result
 import com.dendem.easify.domain.model.EasifyItem
 import com.dendem.easify.domain.use_case.history.GetHistoryUseCase
 import com.dendem.easify.extensions.withPromo
+import com.dendem.easify.util.helper.SpotifyHelper
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -18,7 +19,8 @@ import javax.inject.Inject
 @HiltViewModel
 class HistoryViewModel @Inject constructor(
     private val getHistoryUseCase: GetHistoryUseCase,
-    private val billingHelper: BillingHelper
+    private val billingHelper: BillingHelper,
+    private val spotifyHelper: SpotifyHelper
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(HistoryState())
@@ -97,5 +99,9 @@ class HistoryViewModel @Inject constructor(
             newList = items.withPromo(title, description)
         }
         return newList
+    }
+
+    fun openOnSpotify(uri: String?) {
+        spotifyHelper.openOnSpotify(uri)
     }
 }

@@ -9,7 +9,6 @@ import com.dendem.easify.common.Constants.FREE_LIMIT
 import com.dendem.easify.common.Constants.PREMIUM_HOME_ARTISTS_LIMIT
 import com.dendem.easify.common.Constants.PREMIUM_HOME_HISTORY_LIMIT
 import com.dendem.easify.common.Constants.PREMIUM_HOME_TRACKS_LIMIT
-import com.dendem.easify.common.Constants.PREMIUM_LIMIT
 import com.dendem.easify.common.Result
 import com.dendem.easify.domain.model.EasifyItem
 import com.dendem.easify.domain.use_case.favorites.GetFavoriteArtistsUseCase
@@ -154,5 +153,7 @@ class HomeViewModel @Inject constructor(
         return newList
     }
 
-    fun isSpotifyInstalled() = spotifyHelper.isSpotifyInstalled()
+    fun openOnSpotify(uri: String?) {
+        spotifyHelper.openOnSpotify(uri)
+    }
 }

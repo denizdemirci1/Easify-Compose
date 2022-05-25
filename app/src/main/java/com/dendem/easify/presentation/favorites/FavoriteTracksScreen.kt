@@ -19,6 +19,7 @@ import com.dendem.easify.extensions.toEasifyItem
 import com.dendem.easify.presentation.MainActivity
 import com.dendem.easify.presentation.common.components.EasifyListItemView
 import com.dendem.easify.presentation.common.components.LoadingView
+import com.dendem.easify.presentation.home.HomeViewModel
 
 @Composable
 fun FavoriteTracksScreen(
@@ -45,7 +46,7 @@ fun FavoriteTracksScreen(
                     item = item,
                     position = index,
                     indicatorText = "#${index + 1}",
-                    onItemClick = { handleItemClick(context, billingHelper, it) }
+                    onItemClick = { handleItemClick(context, billingHelper, it, viewModel) }
                 )
             }
         }
@@ -55,11 +56,14 @@ fun FavoriteTracksScreen(
 private fun handleItemClick(
     context: Context,
     billingHelper: BillingHelper,
-    item: EasifyItem
+    item: EasifyItem,
+    viewModel: FavoritesViewModel
 ) {
     when (item.itemType) {
         EasifyItemType.PROMO -> handlePromoClick(context, billingHelper)
-        else -> {}
+        EasifyItemType.ARTIST,
+        EasifyItemType.TRACK,
+        EasifyItemType.ALBUM-> viewModel.openOnSpotify(item.uri)
     }
 }
 

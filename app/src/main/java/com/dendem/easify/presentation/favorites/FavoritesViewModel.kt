@@ -9,6 +9,7 @@ import com.dendem.easify.domain.model.EasifyItem
 import com.dendem.easify.domain.use_case.favorites.GetFavoriteArtistsUseCase
 import com.dendem.easify.domain.use_case.favorites.GetFavoriteTracksUseCase
 import com.dendem.easify.extensions.withPromo
+import com.dendem.easify.util.helper.SpotifyHelper
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -18,7 +19,8 @@ import javax.inject.Inject
 class FavoritesViewModel @Inject constructor(
     private val getFavoriteArtistsUseCase: GetFavoriteArtistsUseCase,
     private val getFavoriteTracksUseCase: GetFavoriteTracksUseCase,
-    private val billingHelper: BillingHelper
+    private val billingHelper: BillingHelper,
+    private val spotifyHelper: SpotifyHelper
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(FavoritesState())
@@ -113,6 +115,10 @@ class FavoritesViewModel @Inject constructor(
             newList = items.withPromo(title, description)
         }
         return newList
+    }
+
+    fun openOnSpotify(uri: String?) {
+        spotifyHelper.openOnSpotify(uri)
     }
 }
 

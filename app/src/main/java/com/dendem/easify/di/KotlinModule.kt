@@ -30,4 +30,12 @@ object KotlinModule {
     ): PackageManager {
         return context.packageManager
     }
+
+    @Provides
+    @Singleton
+    fun provideContext(
+        @ApplicationContext context: Context
+    ): Context {
+        return context
+    }
 }
