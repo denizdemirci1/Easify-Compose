@@ -17,6 +17,7 @@ import com.dendem.easify.domain.use_case.favorites.GetFavoriteTracksUseCase
 import com.dendem.easify.domain.use_case.history.GetHistoryUseCase
 import com.dendem.easify.extensions.withPromo
 import com.dendem.easify.presentation.favorites.TimeRange
+import com.dendem.easify.util.helper.SpotifyHelper
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -27,7 +28,8 @@ class HomeViewModel @Inject constructor(
     private val getHistoryUseCase: GetHistoryUseCase,
     private val getFavoriteArtistsUseCase: GetFavoriteArtistsUseCase,
     private val getFavoriteTracksUseCase: GetFavoriteTracksUseCase,
-    private val billingHelper: BillingHelper
+    private val billingHelper: BillingHelper,
+    private val spotifyHelper: SpotifyHelper
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(HomeState())
@@ -151,4 +153,6 @@ class HomeViewModel @Inject constructor(
         }
         return newList
     }
+
+    fun isSpotifyInstalled() = spotifyHelper.isSpotifyInstalled()
 }

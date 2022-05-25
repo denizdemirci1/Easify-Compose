@@ -10,6 +10,7 @@ fun History.toEasifyItem(): EasifyItem {
         trackName = this.track.name,
         artistName = this.track.artists.firstOrNull()?.name,
         albumName = this.track.album.name,
-        images = this.track.album.images
+        images = this.track.album.images,
+        uri = this.track.uri
     )
 }

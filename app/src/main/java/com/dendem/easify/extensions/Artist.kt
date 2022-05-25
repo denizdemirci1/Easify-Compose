@@ -8,6 +8,7 @@ fun Artist.toEasifyItem(): EasifyItem {
     return EasifyItem(
         itemType = EasifyItemType.ARTIST,
         artistName = this.name,
-        images = this.images
+        images = this.images,
+        uri = this.uri
     )
 }

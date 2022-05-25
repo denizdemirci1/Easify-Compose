@@ -14,4 +14,5 @@
     <string name="top_artists">Top-Künstler</string>
     <string name="top_tracks">Top-Lieder</string>
     <string name="recently_listened">Kürzlich Gehört</string>
+    <string name="download_spotify">Download Spotify for more</string>
 </resources>

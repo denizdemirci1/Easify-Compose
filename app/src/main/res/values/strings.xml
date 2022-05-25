@@ -16,6 +16,7 @@
     <string name="top_artists">Top Artists</string>
     <string name="top_tracks">Top Tracks</string>
     <string name="recently_listened">Recently Listened</string>
+    <string name="download_spotify">Download Spotify for more</string>
 
 
 </resources>

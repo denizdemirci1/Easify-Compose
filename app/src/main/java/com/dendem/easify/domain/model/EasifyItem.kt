@@ -7,7 +7,8 @@ data class EasifyItem(
     val trackName: String? = null,
     val artistName: String? = null,
     val albumName: String? = null,
-    val images: List<Image>? = null
+    val images: List<Image>? = null,
+    val uri: String? = null
 )
 
 enum class EasifyItemType {

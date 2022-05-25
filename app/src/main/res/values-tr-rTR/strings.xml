@@ -14,4 +14,5 @@
     <string name="top_artists">En Sevdiğin Sanatçılar</string>
     <string name="top_tracks">En Sevdiğin Şarkılar</string>
     <string name="recently_listened">Son Dinlenenler</string>
+    <string name="download_spotify">Download Spotify for more</string>
 </resources>

@@ -10,6 +10,7 @@ fun Track.toEasifyItem(): EasifyItem {
         trackName = this.name,
         artistName = this.artists.firstOrNull()?.name,
         albumName = this.album.name,
-        images = this.album.images
+        images = this.album.images,
+        uri = this.uri
     )
 }
