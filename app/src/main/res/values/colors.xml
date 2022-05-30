@@ -4,6 +4,7 @@
     <color name="spotifyGreen">#1DB954</color>
     <color name="spotifyBlack">#191414</color>
     <color name="spotifyRed">#b91d1d</color>
+    <color name="white">#ffffff</color>
     <color name="colorTextGray">#a6a6a6</color>
     <color name="colorHintGray">#808080</color>
 </resources>

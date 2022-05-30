@@ -4,9 +4,19 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../layout/compose-model-1648239233569.xml" value="0.2601851851851852" />
+        <entry key="../../../../layout/compose-model-1653905715337.xml" value="0.25" />
+        <entry key="../../../../layout/compose-model-1653907939338.xml" value="0.33240740740740743" />
+        <entry key="../../../../layout/compose-model-1653907977036.xml" value="0.25" />
+        <entry key="../../../../layout/compose-model-1653908503714.xml" value="0.375" />
+        <entry key="../../../../layout/compose-model-1653908989955.xml" value="0.33240740740740743" />
         <entry key="app/src/main/res/drawable/ic_favorites.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_history.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_home.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_spotify_white.xml" value="0.1445" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_spotify.xml" value="0.135" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_spotify_round.xml" value="0.1215" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_spotify_white.xml" value="0.1215" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_spotify_white_round.xml" value="0.1215" />
       </map>
     </option>
   </component>

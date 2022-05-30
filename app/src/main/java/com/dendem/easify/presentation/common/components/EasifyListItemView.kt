@@ -13,12 +13,14 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.dendem.easify.R
 import com.dendem.easify.domain.model.EasifyItem
 import com.dendem.easify.domain.model.EasifyItemType
 import com.dendem.easify.extensions.getContentDescription
+import com.dendem.easify.presentation.ui.theme.EasifyTheme
 
 @Composable
 fun EasifyListItemView(
@@ -39,7 +41,8 @@ fun EasifyListItemView(
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(16.dp)
+                .padding(16.dp),
+            verticalAlignment = Alignment.CenterVertically
         ) {
             if (indicatorText != null && item.itemType != EasifyItemType.PROMO) {
                 Text(
@@ -75,8 +78,7 @@ fun EasifyListItemView(
                             model = item.images.first().url,
                             contentDescription = item.getContentDescription(),
                             modifier = Modifier
-                                .size(60.dp, 60.dp)
-                                .clip(RoundedCornerShape(8.dp)),
+                                .size(100.dp, 100.dp),
                             contentScale = ContentScale.Crop
                         )
                     }
@@ -106,10 +108,41 @@ fun EasifyListItemView(
                                 fontWeight = FontWeight.Normal,
                                 style = MaterialTheme.typography.subtitle2
                             )
+                            Spacer(modifier = Modifier.height(8.dp))
+                        }
+
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            PlaceHolderView(
+                                30.dp,
+                                30.dp,
+                                item.getContentDescription(),
+                                R.drawable.ic_spotify_green
+                            )
+                            Spacer(modifier = Modifier.width(8.dp))
+                            Text(
+                                text = "PLAY ON SPOTIFY",
+                                modifier = Modifier.padding(0.dp, 0.dp, 12.dp, 0.dp),
+                                color = MaterialTheme.colors.surface,
+                                fontWeight = FontWeight.Normal,
+                                style = MaterialTheme.typography.subtitle2
+                            )
                         }
                     }
                 }
             }
         }
+    }
+}
+
+@Preview("list item view")
+@Composable
+fun EasifyListItemViewPreview() {
+    EasifyTheme {
+        EasifyListItemView(
+            EasifyItem(EasifyItemType.TRACK, "Heathens", "Aurora"),
+            1,
+            "",
+            {}
+        )
     }
 }

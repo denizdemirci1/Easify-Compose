@@ -6,10 +6,15 @@ import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.dendem.easify.R
 import com.dendem.easify.domain.model.EasifyItem
+import com.dendem.easify.domain.model.EasifyItemType
+import com.dendem.easify.presentation.ui.theme.EasifyTheme
 
 @Composable
 fun EasifyCarouselWidgetView(
@@ -40,5 +45,21 @@ fun EasifyCarouselWidgetView(
                 )
             }
         }
+    }
+}
+
+@Preview("carousel widget view")
+@Composable
+fun EasifyCarouselWidgetViewPreview() {
+    EasifyTheme {
+        EasifyCarouselWidgetView(
+            "top tracks",
+            listOf(
+                EasifyItem(EasifyItemType.TRACK, "Heathens", "Aurora"),
+                EasifyItem(EasifyItemType.TRACK, "Heathens", "Aurora"),
+                EasifyItem(EasifyItemType.TRACK, "Heathens", "Aurora")
+            ),
+            {}
+        )
     }
 }

@@ -14,8 +14,8 @@ android {
         applicationId "com.dendem.easify"
         minSdk 26
         targetSdk 32
-        versionCode 7
-        versionName "1.0.2"
+        versionCode 9
+        versionName "1.0.4"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
