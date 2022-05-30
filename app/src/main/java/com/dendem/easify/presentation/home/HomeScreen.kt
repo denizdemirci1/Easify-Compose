@@ -1,9 +1,6 @@
 package com.dendem.easify.presentation.home
 
 import android.content.Context
-import android.content.Intent
-import android.net.Uri
-import android.widget.Toast
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
@@ -15,10 +12,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.core.content.ContextCompat.startActivity
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.dendem.easify.R
 import com.dendem.easify.billing.BillingHelper
+import com.dendem.easify.billing.BillingHelperImpl
 import com.dendem.easify.common.Constants
 import com.dendem.easify.common.Result
 import com.dendem.easify.domain.model.EasifyItem

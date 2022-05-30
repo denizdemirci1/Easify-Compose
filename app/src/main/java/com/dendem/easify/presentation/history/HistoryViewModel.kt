@@ -1,5 +1,6 @@
 package com.dendem.easify.presentation.history
 
+import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dendem.easify.billing.BillingHelper
@@ -26,7 +27,8 @@ class HistoryViewModel @Inject constructor(
     private val _state = MutableStateFlow(HistoryState())
     val state: StateFlow<HistoryState> = _state
 
-    private var isPremiumUser = false
+    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+    var isPremiumUser = false
 
     init {
         viewModelScope.launch {
@@ -50,7 +52,8 @@ class HistoryViewModel @Inject constructor(
         }
     }
 
-    private fun getHistory(limit: Int) {
+    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+    fun getHistory(limit: Int) {
         getHistoryUseCase(limit).onEach { result ->
             when (result) {
                 is Result.Success -> {

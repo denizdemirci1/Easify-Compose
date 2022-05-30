@@ -3,6 +3,7 @@ package com.dendem.easify.di
 import android.content.Context
 import com.dendem.easify.EasifyApp
 import com.dendem.easify.billing.BillingHelper
+import com.dendem.easify.billing.BillingHelperImpl
 import com.dendem.easify.common.Constants
 import dagger.Module
 import dagger.Provides
@@ -22,7 +23,7 @@ object BillingModule {
         @ApplicationContext appContext: Context,
         defaultScope: CoroutineScope
     ): BillingHelper {
-        return BillingHelper(
+        return BillingHelperImpl(
             (appContext as EasifyApp),
             defaultScope,
             arrayOf(Constants.PREMIUM_ACCOUNT)

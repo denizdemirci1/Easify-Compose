@@ -1,17 +1,16 @@
 package com.dendem.easify.presentation.favorites
 
 import android.content.Context
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.dendem.easify.R
 import com.dendem.easify.billing.BillingHelper
+import com.dendem.easify.billing.BillingHelperImpl
 import com.dendem.easify.common.Constants
 import com.dendem.easify.domain.model.EasifyItem
 import com.dendem.easify.domain.model.EasifyItemType
@@ -19,7 +18,6 @@ import com.dendem.easify.extensions.toEasifyItem
 import com.dendem.easify.presentation.MainActivity
 import com.dendem.easify.presentation.common.components.EasifyListItemView
 import com.dendem.easify.presentation.common.components.LoadingView
-import com.dendem.easify.presentation.home.HomeViewModel
 
 @Composable
 fun FavoriteTracksScreen(
