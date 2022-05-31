@@ -8,19 +8,34 @@ plugins {
 }
 
 android {
+    signingConfigs {
+        debug {
+            storeFile file('/Users/Deniz.Demirci/AndroidStudioProjects/Easify/keystore')
+            storePassword 'dnzdmrc93'
+            keyAlias 'key0'
+            keyPassword 'dnzdmrc93'
+        }
+        release {
+            storeFile file('/Users/Deniz.Demirci/AndroidStudioProjects/Easify/keystore')
+            storePassword 'dnzdmrc9393'
+            keyAlias 'key0'
+            keyPassword 'dnzdmrc9393'
+        }
+    }
     compileSdk 32
 
     defaultConfig {
         applicationId "com.dendem.easify"
-        minSdk 26
+        minSdk 21
         targetSdk 32
-        versionCode 10
-        versionName "1.0.5"
+        versionCode 11
+        versionName "1.0.6"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary true
         }
+        signingConfig signingConfigs.release
     }
 
     buildTypes {

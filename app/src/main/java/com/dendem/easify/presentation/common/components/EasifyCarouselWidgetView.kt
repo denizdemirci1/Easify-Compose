@@ -57,7 +57,7 @@ fun EasifyCarouselWidgetViewPreview() {
             listOf(
                 EasifyItem(EasifyItemType.TRACK, "Heathens", "Aurora"),
                 EasifyItem(EasifyItemType.TRACK, "Heathens", "Aurora"),
-                EasifyItem(EasifyItemType.TRACK, "Heathens", "Aurora")
+                EasifyItem(EasifyItemType.PROMO, "Heathens", "Aurora")
             ),
             {}
         )

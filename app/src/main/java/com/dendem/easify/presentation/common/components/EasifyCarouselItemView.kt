@@ -33,13 +33,16 @@ fun EasifyCarouselItemView(
     ) {
         when (item.itemType) {
             EasifyItemType.PROMO -> {
-                Row {
-                    PromoView(
-                        promoViewType = PromoViewType.FOR_CAROUSEL,
-                        title = item.trackName!!,
-                        description = item.artistName!!
-                    )
-                    Spacer(modifier = Modifier.width(16.dp))
+                Column {
+                    Spacer(modifier = Modifier.height(28.dp))
+                    Row {
+                        PromoView(
+                            promoViewType = PromoViewType.FOR_CAROUSEL,
+                            title = item.trackName!!,
+                            description = item.artistName!!
+                        )
+                        Spacer(modifier = Modifier.width(16.dp))
+                    }
                 }
             }
             else -> {
