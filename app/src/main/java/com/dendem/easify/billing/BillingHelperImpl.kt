@@ -325,21 +325,5 @@ class BillingHelperImpl @Inject constructor(
     companion object {
         private val TAG = "Monsters:" + BillingHelperImpl::class.java.simpleName
 
-        @Volatile
-        private var sInstance: BillingHelperImpl? = null
-
-        // Standard boilerplate double check locking pattern for thread-safe singletons.
-        @JvmStatic
-        fun getInstance(
-            application: Application,
-            defaultScope: CoroutineScope,
-            knownInAppSKUs: Array<String>
-        ) = sInstance ?: synchronized(this) {
-            sInstance ?: BillingHelperImpl(
-                application,
-                defaultScope,
-                knownInAppSKUs
-            ).also { sInstance = it }
-        }
     }
 }
